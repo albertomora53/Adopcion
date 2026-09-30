@@ -7,8 +7,8 @@
     <title>Registro</title>
 
     <!-- Tus estilos personalizados -->
-    <link href="/Content/Login/Login1.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/Login/Login2.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/Login/Login1.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/Login/Login2.css" rel="stylesheet" type="text/css" />
 
     <style>
         .gradient-custom {
@@ -53,8 +53,10 @@
                                 <div class="mb-3">
                                     <asp:Label ID="Lbl_textregistro" runat="server" CssClass="text-white mb-2" Text="¿Cómo deseas registrarte?" />
                                     <asp:RadioButtonList ID="rblTipoUsuario" runat="server" CssClass="text-white" AutoPostBack="true" OnSelectedIndexChanged="rblTipoUsuario_SelectedIndexChanged">
-                                        <asp:ListItem Text="Adoptador" Value="1" />
+                                        <asp:ListItem Text="Adoptador" Value="3" />
                                         <asp:ListItem Text="Refugio" Value="2" />
+                                        <asp:ListItem Text="Admin" Value="1" />
+
                                     </asp:RadioButtonList>
                                 </div>
 
@@ -88,6 +90,31 @@
                                         <asp:Label ID="RFC" runat="server" AssociatedControlID="Txt_rfc" CssClass="form-label text-white" Text="RFC" />
                                         <asp:TextBox ID="Txt_rfc" runat="server" CssClass="form-control form-control-lg" placeholder="RFC" />
                                         
+                                    </div>
+
+                                    <div class="form-outline form-white mb-3">
+                                        <asp:Label ID="Label2" runat="server" AssociatedControlID="Txt_direc" CssClass="form-label text-white" Text="Direccion" />
+                                        <asp:TextBox ID="Txt_direc" runat="server" CssClass="form-control form-control-lg" placeholder="Direccion" OnTextChanged="Txt_direc_TextChanged" />
+    
+                                    </div>
+                                </asp:Panel>
+
+                                <asp:Panel ID="pnlAdmin" runat="server" Visible="false">
+                                    <div class="form-outline form-white mb-3">
+                                        <br />
+                                        <asp:Label runat="server" AssociatedControlID="TextBox1" CssClass="form-label text-white" Text="Nombre" />
+                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-lg" />
+        
+                                    </div>
+                                    <div class="form-outline form-white mb-3">
+                                        <asp:Label runat="server" AssociatedControlID="TextBox2" CssClass="form-label text-white" Text="Apellido Paterno" />
+                                        <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control form-control-lg"  />
+        
+                                    </div>
+                                    <div class="form-outline form-white mb-3">
+                                        <asp:Label runat="server" AssociatedControlID="TextBox3" CssClass="form-label text-white" Text="Apellido Materno" />
+                                        <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control form-control-lg"  />
+        
                                     </div>
                                 </asp:Panel>
 

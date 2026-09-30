@@ -437,10 +437,12 @@ button {
     }
 
 button, input, optgroup, select, textarea {
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
-    line-height: inherit
+    line-height: inherit;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
 }
 
 button, select {
@@ -2174,7 +2176,32 @@ progress {
     --bs-table-hover-bg: #323539;
     --bs-table-hover-color: #fff;
     color: var(--bs-table-color);
-    border-color: var(--bs-table-border-color)
+    border-color: var(--bs-table-border-color);
+}
+
+.table-custom {
+    --bs-table-color: #fff;
+    --bs-table-bg: #2125;
+    --bs-table-border-color: #373b3e;
+    --bs-table-striped-bg: #2c3034;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #373b3e;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #323539;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+
+.tabla-redondeada {
+    border-radius: 1rem !important; /* Define qué tan redonda es la esquina */
+    overflow: hidden !important; /* Recorta el contenido que se salga de la curva */
+    border-collapse: separate !important; /* Vital: permite que border-radius funcione */
+    border-spacing: 0; /* Elimina espacios no deseados entre celdas */
+    border: 1px solid #373b3e; /* Borde exterior (color ajustado a tu tema dark) */
 }
 
 .table-responsive {

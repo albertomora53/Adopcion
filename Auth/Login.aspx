@@ -7,16 +7,16 @@
 
     <title>Login</title>
 
-    <link href="/Content/Login/Login1.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/Login/Login2.css" rel="stylesheet" type="text/css" />
+    <link href="Content/Login/Login1.css" rel="stylesheet" type="text/css" />
+    <link href="Content/Login/Login2.css" rel="stylesheet" type="text/css" />
 
-   
     <style>
         .gradient-custom {
                 background: linear-gradient(to right, #7fbce9, #1f4e79);
             }
     </style>
-    </head>
+  </head>
+
     <body class="gradient-custom">
     <form id="form1" runat="server">
         <section class="vh-100">
@@ -28,7 +28,6 @@
 
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <h2 class="fw-bold mb-2 text-uppercase">Inicio de sesión</h2>
-                                    <p class="text-white-50 mb-5">Ingresa tu usuario y contraseña</p>
 
                                     <div class="form-outline form-white mb-4">
                                         <asp:Label ID="Lbl_User" runat="server" AssociatedControlID="Txt_user" CssClass="form-label text-white" Text="Usuario" />

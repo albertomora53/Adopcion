@@ -17,6 +17,7 @@ namespace Adopcion
             {
                 pnlAdoptador.Visible = false;
                 pnlRefugio.Visible = false;
+                pnlAdmin.Visible = false;
             }
         }
 
@@ -38,6 +39,8 @@ namespace Adopcion
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+     
+
             // Validación general
             if (string.IsNullOrWhiteSpace(Txt_nameuser.Text) ||
                 string.IsNullOrWhiteSpace(Txt_password.Text) ||
@@ -56,9 +59,41 @@ namespace Adopcion
             string apePaParaDB = "";
             string apeMaParaDB = "";
             string rfcParaDB = "";
+            string Ref = "";
+    
 
             // Validación y asignación específica según tipo de usuario
-            if (tipoUsuario == "1") // Adoptador
+            if (tipoUsuario == "1") // Admin
+            {
+                if (string.IsNullOrWhiteSpace(TextBox1.Text) ||
+                    string.IsNullOrWhiteSpace(TextBox2.Text) ||
+                    string.IsNullOrWhiteSpace(TextBox3.Text))
+                {
+                    Label1.Text = "Completa todos los campos del admin";
+                    return;
+                }
+                // Asignar valores de Admin
+                nombreParaDB = TextBox1.Text;
+                apePaParaDB = TextBox2.Text;
+                apeMaParaDB = TextBox3.Text;
+            }
+
+            else if (tipoUsuario == "2") // Refugio
+            {
+                if (string.IsNullOrWhiteSpace(txt_Institucion.Text) ||
+                    string.IsNullOrWhiteSpace(Txt_rfc.Text))
+                {
+                    Label1.Text = "Completa todos los campos del refugio.";
+                    return;
+                }
+                // Asignar valores de Refugio
+                nombreParaDB = txt_Institucion.Text; // <-- ¡Usar el campo correcto!
+                rfcParaDB = Txt_rfc.Text;
+                Ref = Guid.NewGuid().ToString();
+   
+            }
+
+            else if (tipoUsuario == "3") // Adoptador
             {
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txt_ApePa.Text) ||
@@ -72,24 +107,10 @@ namespace Adopcion
                 apePaParaDB = txt_ApePa.Text;
                 apeMaParaDB = txt_ApeMa.Text;
             }
-            else if (tipoUsuario == "2") // Refugio
-            {
-                if (string.IsNullOrWhiteSpace(txt_Institucion.Text) ||
-                    string.IsNullOrWhiteSpace(Txt_rfc.Text))
-                {
-                    Label1.Text = "Completa todos los campos del refugio.";
-                    return;
-                }
-                // Asignar valores de Refugio
-                nombreParaDB = txt_Institucion.Text; // <-- ¡Usar el campo correcto!
-                rfcParaDB = Txt_rfc.Text;
-            }
 
-
- 
             // Registro
-             DATABASE data = new DATABASE();
-            string resultado = data.Registrar(
+            AdopcionWS.WebService1 servicio = new AdopcionWS.WebService1();
+            string resultado = servicio.RegistroUsuarios(
                 Txt_nameuser.Text,
                 Txt_password.Text,
                 Convert.ToInt32(tipoUsuario),
@@ -98,13 +119,26 @@ namespace Adopcion
                 apeMaParaDB,     // <-- Usar variable
                 Txt_telefono.Text,
                 Txt_correo.Text,
-                rfcParaDB        // <-- Usar variable
+                rfcParaDB,        // <-- Usar variable
+                Ref
+
             );
+
+                
+
 
             Label1.Text = resultado;
 
             if (resultado.StartsWith("Registro exitoso"))
             {
+                if (tipoUsuario == "2")
+                {
+                    string refugio = servicio.RegistroRefugio(nombreParaDB,
+                                                          Txt_direc.Text,
+                                                          "Pendiente",
+                                                            Ref);
+                }
+
                 // Redirigir al login
                 Response.Redirect("Login.aspx");
             }
@@ -142,8 +176,9 @@ namespace Adopcion
         {
             string tipo = rblTipoUsuario.SelectedValue;
 
-            pnlAdoptador.Visible = (tipo == "1");
+            pnlAdoptador.Visible = (tipo == "3");
             pnlRefugio.Visible = (tipo == "2");
+            pnlAdmin.Visible = (tipo == "1");
 
         }
 
@@ -172,5 +207,9 @@ namespace Adopcion
 
         }
 
+        protected void Txt_direc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

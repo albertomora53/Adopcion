@@ -5,8 +5,11 @@ Patitas Felices es un sistema web integral diseñado para la gestión y seguimie
 Estructura del proyecto
 
 ├── Adopcion (Frontend ASP.NET Web Forms)
+
 ├── AdopcionWS (Servicios Web SOAP ASMX)
+
 ├── Adopcion_Data (Librería de Clases / DAL / Encriptación AES / Validaciones)
+
 └── Database/ (Scripts y Modelo Relacional SQL)
 
 Requisitos Previos

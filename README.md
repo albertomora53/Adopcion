@@ -12,8 +12,10 @@ Estructura del proyecto
 
 └── Database/ (Scripts y Modelo Relacional SQL)
 
+
 Requisitos Previos
-Visual Studio (2019 o posterior) con soporte para ASP.NET y desarrollo web.Microsoft SQL Server (2019 o superior / Nivel de compatibilidad 160).   
+Visual Studio (2019 o posterior) con soporte para ASP.NET y desarrollo web.Microsoft SQL Server 
+(2019 o superior / Nivel de compatibilidad 160).   
 .NET Framework 4.x
 
 
